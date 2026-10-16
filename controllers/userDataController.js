@@ -123,7 +123,9 @@ export const login = async (req, res) => {
             res.status(200).json({ message: "Login Successfull", data: uData, status: 1, token: token })
         }
         res.status(200).json({ message: "Password not match", status: 0 })
-    } catch (error) {
-        res.status(500).json({ message: error.message })
+    } // ✅ This will print the exact database error to your Render logs:
+    catch (error) {
+        console.error("Login Error:", error); // <-- Add this!
+        res.status(500).json({ message: error.message });
     }
 }
